@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class ListarSociosCuotaVencidaActivity : AppCompatActivity() {
+class PagarActividadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_listar_socios_cuota_vencida)
-        val btnPagarCuota = findViewById<Button>(R.id.btnPagarCuota)
-        btnPagarCuota.setOnClickListener {
-            val intent = Intent(this, PagarCuotaActivity::class.java)
+        setContentView(R.layout.activity_pagar_actividad)
+        val btnPagar = findViewById<Button>(R.id.btnPagar)
+        btnPagar.setOnClickListener {
+            val intent = Intent(this, PagoActividadRegistradoActivity::class.java)
             startActivity(intent)
         }
     }
