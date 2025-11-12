@@ -3,7 +3,9 @@ package com.example.clubdeportivo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -12,6 +14,10 @@ class MenuPrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu_principal)
+
+        val tvBienvenida = findViewById<TextView>(R.id.tvBienvenida)
+        val usuario = intent.getStringExtra("usuario")
+        tvBienvenida.text = "Bienvenido, $usuario"
 
         val btnRegistrarSocio = findViewById<Button>(R.id.btnRegistrarSocio)
         btnRegistrarSocio.setOnClickListener{
@@ -29,6 +35,18 @@ class MenuPrincipalActivity : AppCompatActivity() {
         btnListarSociosCuotaVencida.setOnClickListener {
             val intent = Intent(this, ListarSociosCuotaVencidaActivity::class.java)
             startActivity(intent)
+        }
+
+        val btnSalir = findViewById<TextView>(R.id.tvSalir)
+        btnSalir.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Cerrar sesión")
+                .setMessage("¿Desea cerrar la sesión?")
+                .setPositiveButton("Sí") {_,_ ->
+                    finish()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
     }
 }

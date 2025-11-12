@@ -9,8 +9,8 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="1955dp"
+        android:layout_height="206dp"
         android:layout_marginBottom="10dp"
         android:text="← Volver"
         android:textColor="@android:color/black"

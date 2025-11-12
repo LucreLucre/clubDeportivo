@@ -25,6 +25,7 @@
             android:layout_marginLeft="40dp"/>
 
         <EditText
+            android:id="@+id/etUsuario"
             android:layout_width="350dp"
             android:layout_height="90dp"
             android:layout_gravity="center_horizontal"
@@ -45,6 +46,7 @@
             android:layout_marginLeft="40dp"/>
 
         <EditText
+            android:id="@+id/etPassword"
             android:layout_width="350dp"
             android:layout_height="90dp"
             android:layout_gravity="center_horizontal"
