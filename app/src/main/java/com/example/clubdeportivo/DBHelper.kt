@@ -68,6 +68,22 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
         db.delete("clientes", "nombre = ?", arrayOf(nombre))
     }
 
+    // PAGOS
+    fun actualizarUltimoPago(nroSocio: Int) {
+        val db = writableDatabase
+        val valores = ContentValues()
+        valores.put("ultimo_pago", java.time.LocalDate.now().toString()) // formato YYYY-MM-DD
+
+        db.update(
+            "clientes",
+            valores,
+            "nro_socio = ?",
+            arrayOf(nroSocio.toString())
+        )
+
+        db.close()
+    }
+
 
     // ACTIVIDADES
     fun obtenerActividades(): List<Pair<String, Int>>{

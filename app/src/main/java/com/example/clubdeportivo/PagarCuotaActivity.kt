@@ -15,7 +15,7 @@ class PagarCuotaActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_pagar_cuota)
         val tvNroSocio = findViewById<TextView>(R.id.tvNroSocio)
-        val nro_socio = intent.getStringExtra("numero")
+        val nro_socio = intent.getIntExtra("numero", 0)
         tvNroSocio.text = "Nº de socio: $nro_socio"
 
         val tvnombreApellido = findViewById<TextView>(R.id.tvNombreApellido)
@@ -25,6 +25,10 @@ class PagarCuotaActivity : AppCompatActivity() {
 
         val btnPagar = findViewById<Button>(R.id.btnPagarCuota)
         btnPagar.setOnClickListener {
+            if (nro_socio != null) {
+                val dbHelper = DBHelper(this)
+                dbHelper.actualizarUltimoPago(nro_socio)
+            }
             val intent = Intent(this, PagoCuotaRegistradoActivity::class.java)
             startActivity(intent)
         }
