@@ -4,6 +4,9 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.time.LocalDate.now
 
 
 class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1){
@@ -69,11 +72,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
     }
 
     // PAGOS
+    @RequiresApi(Build.VERSION_CODES.O)
     fun actualizarUltimoPago(nroSocio: Int) {
         val db = writableDatabase
         val valores = ContentValues()
-        valores.put("ultimo_pago", java.time.LocalDate.now().toString()) // formato YYYY-MM-DD
-
+        valores.put("ultimo_pago", now().toString())
         db.update(
             "clientes",
             valores,
@@ -104,5 +107,33 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
         val db = writableDatabase
         db.delete("actividades", "nombre = ?", arrayOf(nombre))
     }
+
+    fun actualizarCupo(idActividad: Int) {
+        val db = writableDatabase
+
+        val cursor = db.rawQuery("SELECT cupo FROM actividades WHERE id = ?", arrayOf(idActividad.toString()))
+        if (cursor.moveToFirst()) {
+            val cupoActual = cursor.getInt(0)
+            cursor.close()
+
+            if (cupoActual > 0) {
+                val nuevoCupo = cupoActual - 1
+                val valores = ContentValues()
+                valores.put("cupo", nuevoCupo)
+
+                db.update(
+                    "actividades",
+                    valores,
+                    "id = ?",
+                    arrayOf(idActividad.toString())
+                )
+            }
+        } else {
+            cursor.close()
+        }
+
+        db.close()
+    }
+
 
 }

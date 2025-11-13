@@ -9,8 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ActividadAdapter(
     private val datos: MutableList<Pair<String,Int>>,
-    private val dbHelper: DBHelper
+    private val dbHelper: DBHelper,
+    // para pasarlo en el intent
+    private val onItemClick: (String, Int) -> Unit
 ): RecyclerView.Adapter<ActividadAdapter.ViewHolder>() {
+
+    var selectedPosition = RecyclerView.NO_POSITION
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvItemActividad: TextView = view.findViewById(R.id.tvItemActividad)
@@ -26,8 +30,13 @@ class ActividadAdapter(
         val (nombre, cupo) = datos[position]
         holder.tvItemActividad.text = "$nombre - Cupos disponibles: $cupo"
 
-        holder.itemView.setOnClickListener(){
-            val actividad = nombre
+        holder.itemView.isSelected = position == selectedPosition
+        holder.itemView.setBackgroundColor(
+            if (position == selectedPosition) 0xFFE0E0E0.toInt() else 0xFFFFFFFF.toInt()
+        )
+
+        holder.itemView.setOnClickListener{
+            onItemClick(nombre, cupo)
         }
 
         holder.itemView.setOnLongClickListener {
