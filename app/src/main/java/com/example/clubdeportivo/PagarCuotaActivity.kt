@@ -30,6 +30,9 @@ class PagarCuotaActivity : AppCompatActivity() {
                 dbHelper.actualizarUltimoPago(nro_socio)
             }
             val intent = Intent(this, PagoCuotaRegistradoActivity::class.java)
+            intent.putExtra("numero", nro_socio)
+            intent.putExtra("nombre", nombre)
+            intent.putExtra("apellido", apellido)
             startActivity(intent)
         }
     }

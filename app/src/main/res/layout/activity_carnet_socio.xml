@@ -71,6 +71,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvSocioCarnet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre y Apellido"
@@ -79,18 +80,13 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvNumeroCarnet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DNI "
+                android:text="Nro de socio "
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Socio desde\nFecha de Inicio"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Logo del club -->

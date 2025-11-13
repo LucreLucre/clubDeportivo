@@ -61,6 +61,7 @@
             android:layout_marginBottom="10dp"/>
 
         <TextView
+            android:id="@+id/tvNumeroFactura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Socio: "
@@ -69,34 +70,22 @@
             android:textColor="@android:color/black"/>
 
         <TextView
+            android:id="@+id/tvSocioFactura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Monto: "
+            android:text="Apellido y nombre "
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="10dp"/>
+            android:textColor="@android:color/black"/>
 
         <TextView
+            android:id="@+id/tvFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fecha: "
             android:textSize="14sp"
             android:textColor="@android:color/black"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medio de pago: "
-            android:textSize="14sp"
-            android:textColor="@android:color/black"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ID de pago: "
-            android:textSize="14sp"
-            android:textColor="@android:color/black"/>
     </LinearLayout>
 
     <Button
