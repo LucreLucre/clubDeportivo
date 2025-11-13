@@ -52,7 +52,7 @@
     <!-- Lista de socios -->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvListaVencimientos"
+        android:id="@+id/rvListaActividades"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
@@ -79,8 +79,8 @@
 
     <!-- Botón de pago -->
     <Button
-        android:id="@+id/btnPagarCuota"
-        android:text="PAGAR CUOTA"
+        android:id="@+id/btnAsignarActividad"
+        android:text="ASIGNAR ACTIVIDAD"
         android:textStyle="bold"
         android:backgroundTint="#000000"
         android:textColor="#FFFFFF"

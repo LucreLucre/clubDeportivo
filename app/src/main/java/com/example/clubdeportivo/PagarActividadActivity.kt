@@ -13,7 +13,10 @@ class PagarActividadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_pagar_actividad)
-        val btnPagar = findViewById<Button>(R.id.btnPagar)
+        val actividad = intent.getStringExtra("actividad")
+        val btnPagar = findViewById<Button>(R.id.btnPagarActividad)
+
+
         btnPagar.setOnClickListener {
             val intent = Intent(this, PagoActividadRegistradoActivity::class.java)
             startActivity(intent)

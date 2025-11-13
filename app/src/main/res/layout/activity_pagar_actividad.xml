@@ -103,7 +103,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnPagar"
+        android:id="@+id/btnPagarActividad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pagar"
