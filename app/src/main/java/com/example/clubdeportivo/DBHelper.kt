@@ -47,15 +47,17 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
 */
 
     // CLIENTES
-    fun obtenerClientesVencidos(): List<Pair<Int, String>>{
+    fun obtenerClientesVencidos(): List<Triple<Int, String, String>>{
         val db = readableDatabase
-        val lista = mutableListOf<Pair<Int, String>>()
-        val cursor = db.rawQuery("SELECT nro_socio, ultimo_pago FROM clientes WHERE date(ultimo_pago) <= date('now', '-1 month')", null)
+        // Busqué cómo listar 3 elementos seguidos
+        val lista = mutableListOf<Triple<Int, String, String>>()
+        val cursor = db.rawQuery("SELECT nro_socio, nombre, apellido FROM clientes WHERE date(ultimo_pago) <= date('now', '-1 month')", null)
         if(cursor.moveToFirst()){
             do{
                 val nro_socio = (cursor.getInt(0))
-                val ultimo_pago = (cursor.getString(1) ?: "")
-                lista.add(nro_socio to ultimo_pago)
+                val nombre = (cursor.getString(1))
+                val apellido = (cursor.getString(2))
+                lista.add(Triple(nro_socio, nombre, apellido))
             } while(cursor.moveToNext())
         }
         return lista
