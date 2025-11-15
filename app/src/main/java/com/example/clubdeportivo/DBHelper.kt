@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 import java.time.LocalDate.now
 
 
-class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 3){
+class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 6){
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
@@ -59,6 +59,12 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 3)
                     "('funcional', 6)" +
                     ";"
         )
+
+        // 👇 SOCIO DE PRUEBA CON CUOTA VENCIDA
+        db.execSQL(
+            "INSERT INTO clientes (nombre, apellido, dni, telefono, socio, nro_socio, apto_fisico, ultimo_pago) VALUES " +
+                    "('Prueba', 'Vencido', 11223344, '1122334455', 1, 1, 1, date('now','-40 days'));"
+        )
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -70,23 +76,24 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 3)
 
     // CLIENTES
 
-    fun insertarCliente(nombre:String, apellido:String, dni:Int, telefono:String, socio:Boolean):Int{
-        val db =  writableDatabase
+    fun insertarCliente(nombre: String, apellido: String, dni: Int, telefono: String, socio: Boolean): Int {
+        val db = writableDatabase
         val values = ContentValues()
 
-        val nuevoNroSocio = getNroSocio()
+        // Si es socio, asigno un número nuevo. Si no, nro_socio = 0
+        val nroSocio = if (socio) getNroSocio() else 0
+
         values.put("nombre", nombre)
         values.put("apellido", apellido)
         values.put("dni", dni)
         values.put("telefono", telefono)
         values.put("socio", socio)
-        if (socio)
-            values.put("nro_socio", nuevoNroSocio)
-
+        values.put("nro_socio", nroSocio)   // SIEMPRE guardo algo: >0 o 0
 
         db.insert("clientes", null, values)
         db.close()
-        return nuevoNroSocio
+
+        return nroSocio
     }
 
     private fun getNroSocio(): Int {
@@ -146,15 +153,16 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 3)
 
 
     // ACTIVIDADES
-    fun obtenerActividades(): List<Pair<String, Int>>{
+    fun obtenerActividades(): List<Triple<Int, String, Int>>{
         val db = readableDatabase
-        val lista = mutableListOf<Pair<String, Int>>()
-        val cursor = db.rawQuery("SELECT actividad, cupo FROM actividades", null)
+        val lista = mutableListOf<Triple<Int, String, Int>>()
+        val cursor = db.rawQuery("SELECT id, actividad, cupo FROM actividades", null)
         if(cursor.moveToFirst()){
             do{
-                val nombre = (cursor.getString(0))
-                val cupo = (cursor.getInt(1) ?: 0)
-                lista.add(nombre to cupo)
+                val id = (cursor.getInt(0))
+                val nombre = (cursor.getString(1))
+                val cupo = (cursor.getInt(2) ?: 0)
+                lista.add(Triple(id, nombre, cupo))
             } while(cursor.moveToNext())
         }
         return lista
@@ -193,7 +201,6 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 3)
     }
 
     // EMPLEADOS
-    // EMPLEADOS - LOGIN
     fun validarEmpleado(usuario: String, contraseña: String): Boolean {
         val db = readableDatabase
         var esValido = false

@@ -21,6 +21,9 @@ class PagarActividadActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_pagar_actividad)
 
+        val dbHelper = DBHelper(this)
+
+        val id = intent.getStringExtra("id")?.toIntOrNull()
         val actividad = intent.getStringExtra("actividad")
         val tvActividad = findViewById<TextView>(R.id.tvPagarActividad)
         tvActividad.text = "Actividad: $actividad"
@@ -33,7 +36,11 @@ class PagarActividadActivity : AppCompatActivity() {
 
         val btnPagar = findViewById<Button>(R.id.btnPagarActividad)
 
+
         btnPagar.setOnClickListener {
+            if(id != null){
+                dbHelper.actualizarCupo(id)
+            }
             val intent = Intent(this, PagoActividadRegistradoActivity::class.java)
             intent.putExtra("actividad", actividad)
             intent.putExtra("monto", monto)

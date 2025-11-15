@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class AsignarActividadActivity : AppCompatActivity() {
-    var actividadSeleccionada: Pair<String, Int>? = null
+    var actividadSeleccionada: Triple<Int, String, Int>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,8 +24,8 @@ class AsignarActividadActivity : AppCompatActivity() {
         val dbHelper = DBHelper(this)
         val datos = dbHelper.obtenerActividades().toMutableList()
 
-        val adapter = ActividadAdapter(datos, dbHelper){ nombre, cupo ->
-            actividadSeleccionada = Pair(nombre, cupo)
+        val adapter = ActividadAdapter(datos, dbHelper){ id, actividad, cupo ->
+            actividadSeleccionada = Triple(id, actividad, cupo)
         }
         rvListaActividades.adapter = adapter
 
@@ -34,11 +34,12 @@ class AsignarActividadActivity : AppCompatActivity() {
 
         val btnAsignar = findViewById<Button>(R.id.btnAsignarActividad)
         btnAsignar.setOnClickListener{
-            actividadSeleccionada?.let { (actividad, cupo) ->
+            actividadSeleccionada?.let { (id, actividad, cupo) ->
                 val intent = Intent(this, PagarActividadActivity::class.java)
                 intent.putExtra("actividad", actividad)
                 intent.putExtra("cupo", cupo)
                 intent.putExtra("dni", dni)
+                intent.putExtra("id", id)
                 startActivity(intent)
             } ?: run {
                 Toast.makeText(this, "Seleccione una actividad primero", Toast.LENGTH_SHORT).show()

@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class ActividadAdapter(
-    private val datos: MutableList<Pair<String,Int>>,
+    private val datos: MutableList<Triple<Int,String,Int>>,
     private val dbHelper: DBHelper,
     // para pasarlo en el intent
-    private val onItemClick: (String, Int) -> Unit
+    private val onItemClick: (Int, String, Int) -> Unit
 ): RecyclerView.Adapter<ActividadAdapter.ViewHolder>() {
 
     var selectedPosition = RecyclerView.NO_POSITION
@@ -27,8 +27,8 @@ class ActividadAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (nombre, cupo) = datos[position]
-        holder.tvItemActividad.text = "$nombre - Cupos disponibles: $cupo"
+        val (id, actividad, cupo) = datos[position]
+        holder.tvItemActividad.text = "$actividad - Cupos disponibles: $cupo"
 
         holder.itemView.isSelected = position == selectedPosition
         holder.itemView.setBackgroundColor(
@@ -36,7 +36,7 @@ class ActividadAdapter(
         )
 
         holder.itemView.setOnClickListener{
-            onItemClick(nombre, cupo)
+            onItemClick(id, actividad, cupo)
         }
 
         holder.itemView.setOnLongClickListener {
@@ -44,7 +44,7 @@ class ActividadAdapter(
                 .setTitle("Eliminar actividad")
                 .setMessage("¿Desea eliminar la actividad?")
                 .setPositiveButton("Sí") {_,_ ->
-                    dbHelper.eliminarActividad(nombre)
+                    dbHelper.eliminarActividad(id.toString())
                     datos.removeAt(position)
                     notifyItemRemoved(position)
                 }
