@@ -192,5 +192,24 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
         db.close()
     }
 
+    // EMPLEADOS
+    // EMPLEADOS - LOGIN
+    fun validarEmpleado(usuario: String, contraseña: String): Boolean {
+        val db = readableDatabase
+        var esValido = false
+
+        val cursor = db.rawQuery(
+            "SELECT e_legajo FROM empleados WHERE e_usuario = ? AND e_contraseña = ?",
+            arrayOf(usuario, contraseña)
+        )
+
+        if (cursor.moveToFirst()) {
+            esValido = true
+        }
+
+        cursor.close()
+        db.close()
+        return esValido
+    }
 
 }

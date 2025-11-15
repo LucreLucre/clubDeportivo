@@ -9,10 +9,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var dbHelper: DBHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        // Instanciamos el helper de la BD
+        dbHelper = DBHelper(this)
 
         val etUsuario = findViewById<EditText>(R.id.etUsuario)
         val etPassword = findViewById<EditText>(R.id.etPassword)
@@ -24,12 +28,21 @@ class MainActivity : AppCompatActivity() {
 
             if(usuario.isEmpty() || pass.isEmpty()){
                 Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_LONG).show()
-            } else if(usuario == "admin" && pass == "1234"){
-                val intent = Intent(this, MenuPrincipalActivity::class.java)
-                intent.putExtra("usuario", usuario)
-                startActivity(intent)
-            } else{
-                Toast.makeText(this, "Usuario o contraseña incorrectas", Toast.LENGTH_LONG).show()
+            } else {
+                val esValido = dbHelper.validarEmpleado(usuario, pass)
+
+                if (esValido) {
+                    val intent = Intent(this, MenuPrincipalActivity::class.java)
+                    intent.putExtra("usuario", usuario)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Usuario o contraseña incorrectas",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
     }
