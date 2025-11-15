@@ -31,7 +31,7 @@ class AsignarActividadActivity : AppCompatActivity() {
         val btnAsignar = findViewById<Button>(R.id.btnAsignarActividad)
         btnAsignar.setOnClickListener{
             actividadSeleccionada?.let { (actividad, cupo) ->
-                val intent = Intent(this, PagarCuotaActivity::class.java)
+                val intent = Intent(this, PagarActividadActivity::class.java)
                 intent.putExtra("actividad", actividad)
                 intent.putExtra("cupo", cupo)
                 startActivity(intent)

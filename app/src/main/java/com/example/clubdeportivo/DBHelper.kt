@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 import java.time.LocalDate.now
 
 
-class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 2){
+class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 3){
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
