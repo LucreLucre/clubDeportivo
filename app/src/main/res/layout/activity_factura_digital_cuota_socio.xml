@@ -79,7 +79,7 @@
             android:textColor="@android:color/black"/>
 
         <TextView
-            android:id="@+id/tvFecha"
+            android:id="@+id/tvFechaFactura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fecha: "
