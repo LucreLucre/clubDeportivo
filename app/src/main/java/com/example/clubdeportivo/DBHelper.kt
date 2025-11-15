@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 import java.time.LocalDate.now
 
 
-class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1){
+class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 2){
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
@@ -55,7 +55,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
         db.execSQL(
             "INSERT INTO actividades (actividad, cupo) VALUES" +
                     "('pilates',6), " +
-                    "('aqua gym', 5)" +
+                    "('aqua gym', 5)," +
                     "('funcional', 6)" +
                     ";"
         )
