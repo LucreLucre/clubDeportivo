@@ -36,9 +36,10 @@
 
 
     <TextView
+        android:id="@+id/tvNumeroRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Socio N° 1234"
+        android:text="Socio Nº"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         android:layout_marginTop="15dp"
@@ -46,6 +47,7 @@
         android:layout_gravity="center_horizontal" />
 
     <TextView
+        android:id="@+id/tvNombreApellidoRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Juan Pérez"

@@ -3,6 +3,7 @@ package com.example.clubdeportivo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,6 +14,14 @@ class RegistroExitosoSocioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_registro_exitoso_socio)
+        val tvNumero = findViewById<TextView>(R.id.tvNumeroRegistro)
+        val nro_socio = intent.getIntExtra("numero", 0)
+        tvNumero.text = "Nº de socio: $nro_socio"
+
+        val tvnombreApellido = findViewById<TextView>(R.id.tvNombreApellidoRegistro)
+        val nombre = intent.getStringExtra("nombre")
+        val apellido = intent.getStringExtra("apellido")
+        tvnombreApellido.text = "$apellido, $nombre"
 
         val btnPagarCuotaSocio = findViewById<Button>(R.id.btnPagarCuotaSocio)
         btnPagarCuotaSocio.setOnClickListener {

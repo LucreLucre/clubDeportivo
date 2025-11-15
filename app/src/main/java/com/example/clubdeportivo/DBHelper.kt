@@ -42,16 +42,23 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
 
     // CLIENTES
 
-    fun insertarCliente(nombre:String, apellido:String, dni:Int, telefono:String, socio:Boolean){
+    fun insertarCliente(nombre:String, apellido:String, dni:Int, telefono:String, socio:Boolean):Int{
         val db =  writableDatabase
         val values = ContentValues()
+
+        val nuevoNroSocio = getNroSocio()
         values.put("nombre", nombre)
         values.put("apellido", apellido)
         values.put("dni", dni)
         values.put("telefono", telefono)
         values.put("socio", socio)
-        values.put("nro_socio", getNroSocio())
+        if (socio)
+            values.put("nro_socio", nuevoNroSocio)
+
+
         db.insert("clientes", null, values)
+        db.close()
+        return nuevoNroSocio
     }
 
     private fun getNroSocio(): Int {

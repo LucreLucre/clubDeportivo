@@ -32,9 +32,12 @@ class RegistrarSocioActivity : AppCompatActivity() {
             val telefono = etTelefono.text.toString()
             val socio = cbSocio.isChecked
 
-            dbHelper.insertarCliente(nombre, apellido, dni, telefono, socio)
+            val nro_socio = dbHelper.insertarCliente(nombre, apellido, dni, telefono, socio)
 
             val intent = Intent(this, RegistroExitosoSocioActivity::class.java)
+            intent.putExtra("nombre", nombre)
+            intent.putExtra("apellido", apellido)
+            intent.putExtra("numero", nro_socio)
             startActivity(intent)
         }
     }
