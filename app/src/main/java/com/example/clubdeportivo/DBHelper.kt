@@ -39,17 +39,39 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
         db.execSQL("DROP TABLE IF EXISTS actividades")
         onCreate(db)
     }
-/*
-    fun insertarProducto(nombre:String, fechaVencimiento: String){
+
+    // CLIENTES
+
+    fun insertarCliente(nombre:String, apellido:String, dni:Int, telefono:String, socio:Boolean){
         val db =  writableDatabase
         val values = ContentValues()
         values.put("nombre", nombre)
-        values.put("fecha_vencimiento", fechaVencimiento)
-        db.insert("productos", null, values)
+        values.put("apellido", apellido)
+        values.put("dni", dni)
+        values.put("telefono", telefono)
+        values.put("socio", socio)
+        values.put("nro_socio", getNroSocio())
+        db.insert("clientes", null, values)
     }
-*/
 
-    // CLIENTES
+    private fun getNroSocio(): Int {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT MAX(nro_socio) FROM clientes", null)
+
+        var nuevoNumero = 1  // Si es el 1er socio
+
+        if (cursor.moveToFirst()) {
+            val ultimo = cursor.getInt(0)
+            if (!cursor.isNull(0)) {
+                nuevoNumero = ultimo + 1
+            }
+        }
+
+        cursor.close()
+        return nuevoNumero
+    }
+
+
     fun obtenerClientesVencidos(): List<Triple<Int, String, String>>{
         val db = readableDatabase
         // Busqué cómo listar 3 elementos seguidos
