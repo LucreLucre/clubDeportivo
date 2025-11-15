@@ -64,6 +64,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS clientes")
         db.execSQL("DROP TABLE IF EXISTS actividades")
+        db.execSQL("DROP TABLE IF EXISTS empleados")
         onCreate(db)
     }
 
@@ -148,7 +149,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
     fun obtenerActividades(): List<Pair<String, Int>>{
         val db = readableDatabase
         val lista = mutableListOf<Pair<String, Int>>()
-        val cursor = db.rawQuery("SELECT nombre, cupo FROM actividades", null)
+        val cursor = db.rawQuery("SELECT actividad, cupo FROM actividades", null)
         if(cursor.moveToFirst()){
             do{
                 val nombre = (cursor.getString(0))
@@ -161,7 +162,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
 
     fun eliminarActividad(nombre: String){
         val db = writableDatabase
-        db.delete("actividades", "nombre = ?", arrayOf(nombre))
+        db.delete("actividades", "actividad = ?", arrayOf(nombre))
     }
 
     fun actualizarCupo(idActividad: Int) {

@@ -28,6 +28,9 @@ class RegistroExitosoSocioActivity : AppCompatActivity() {
         btnPagarCuotaSocio.setOnClickListener {
             if(nro_socio != null){
                 val intent = Intent(this, PagarCuotaActivity::class.java)
+                intent.putExtra("numero", nro_socio)
+                intent.putExtra("nombre", nombre)
+                intent.putExtra("apellido", apellido)
                 startActivity(intent)
             }else{
                 AlertDialog.Builder(this)
