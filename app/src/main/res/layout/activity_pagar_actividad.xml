@@ -36,6 +36,7 @@
 
 
     <TextView
+        android:id="@+id/tvPagarActividad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre de Actividad "
@@ -66,6 +67,7 @@
         android:layout_marginTop="8dp">
 
         <RadioGroup
+            android:id="@+id/rgMetodoPago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -93,6 +95,7 @@
             android:layout_marginTop="24dp"/>
 
         <EditText
+            android:id="@+id/etMonto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ingrese monto"

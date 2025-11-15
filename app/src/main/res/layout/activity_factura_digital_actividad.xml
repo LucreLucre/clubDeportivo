@@ -61,6 +61,7 @@
             android:layout_marginBottom="10dp"/>
 
         <TextView
+            android:id="@+id/tvNombreActividad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre de actividad "
@@ -69,6 +70,7 @@
             android:textColor="@android:color/black"/>
 
         <TextView
+            android:id="@+id/tvMontoActividad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Monto: "
@@ -78,6 +80,7 @@
             android:layout_marginBottom="10dp"/>
 
         <TextView
+            android:id="@+id/tvFechaActividad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fecha: "
@@ -85,18 +88,13 @@
             android:textColor="@android:color/black"/>
 
         <TextView
+            android:id="@+id/tvMedioActividad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medio de pago: "
             android:textSize="14sp"
             android:textColor="@android:color/black"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ID de pago: "
-            android:textSize="14sp"
-            android:textColor="@android:color/black"/>
     </LinearLayout>
 
     <Button
@@ -106,17 +104,6 @@
         android:backgroundTint="@android:color/black"
         android:textColor="@android:color/white"
         android:layout_marginTop="40dp"
-        android:layout_gravity="center_horizontal"
-        android:padding="12dp"/>
-
-    <Button
-        android:id="@+id/btnVerCarnet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver carnet de socio"
-        android:backgroundTint="@android:color/black"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:padding="12dp"/>
 
