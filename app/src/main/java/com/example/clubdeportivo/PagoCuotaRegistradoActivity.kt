@@ -1,15 +1,19 @@
 package com.example.clubdeportivo
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.time.LocalDate.now
 
 class PagoCuotaRegistradoActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,6 +26,9 @@ class PagoCuotaRegistradoActivity : AppCompatActivity() {
         val nombre = intent.getStringExtra("nombre")
         val apellido = intent.getStringExtra("apellido")
         tvSocio.text = "$apellido, $nombre"
+
+        val tvFecha = findViewById<TextView>(R.id.tvFecha)
+        tvFecha.text = now().toString()
 
 
         val btnMostrarFactura= findViewById<Button>(R.id.btnMostrarFactura)
