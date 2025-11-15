@@ -34,11 +34,14 @@ class RegistrarSocioActivity : AppCompatActivity() {
 
             val nro_socio = dbHelper.insertarCliente(nombre, apellido, dni, telefono, socio)
 
-            val intent = Intent(this, RegistroExitosoSocioActivity::class.java)
-            intent.putExtra("nombre", nombre)
-            intent.putExtra("apellido", apellido)
-            intent.putExtra("numero", nro_socio)
-            startActivity(intent)
+            if(socio){
+                val intent = Intent(this, RegistroExitosoSocioActivity::class.java)
+                intent.putExtra("nombre", nombre)
+                intent.putExtra("apellido", apellido)
+                intent.putExtra("numero", nro_socio)
+                startActivity(intent)
+            }
+
         }
     }
 }
