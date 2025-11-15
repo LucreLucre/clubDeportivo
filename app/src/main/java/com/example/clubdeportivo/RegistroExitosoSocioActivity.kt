@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -25,8 +26,17 @@ class RegistroExitosoSocioActivity : AppCompatActivity() {
 
         val btnPagarCuotaSocio = findViewById<Button>(R.id.btnPagarCuotaSocio)
         btnPagarCuotaSocio.setOnClickListener {
-            val intent = Intent(this, PagarCuotaActivity::class.java)
-            startActivity(intent)
+            if(nro_socio != null){
+                val intent = Intent(this, PagarCuotaActivity::class.java)
+                startActivity(intent)
+            }else{
+                AlertDialog.Builder(this)
+                    .setTitle("El cliente no es socio")
+                    .setMessage("El cliente no es socio")
+                    .setNeutralButton("Aceptar", null)
+                    .show()
+            }
+
         }
     }
 }
