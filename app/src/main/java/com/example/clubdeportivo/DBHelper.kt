@@ -32,6 +32,33 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Club.db", null, 1)
                     "cupo INTEGER)"
         )
 
+        db.execSQL(
+            "CREATE TABLE empleados(" +
+                    "e_legajo INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "e_nombre TEXT NOT NULL, " +
+                    "e_apellido TEXT NOT NULL, " +
+                    "e_usuario TEXT NOT NULL, " +
+                    "e_contraseña TEXT NOT NULL, " +
+                    "e_rol TEXT NOT NULL)"
+        )
+
+        db.execSQL(
+            "INSERT INTO empleados (e_nombre, e_apellido, e_usuario, e_contraseña, e_rol) VALUES " +
+                    "('Camila', 'Cuns', 'ccuns', 'cuns1234', 'empleado'), " +
+                    "('Lucas', 'Blaci', 'lblaci', 'blac1234', 'empleado'), " +
+                    "('Lucrecia', 'Vigo', 'lvigo', 'vigo1234', 'empleado'), " +
+                    "('Yahir Iván', 'Perez Tolchinsky', 'yperez', 'pere1234', 'empleado'), " +
+                    "('Kevin Axel', 'Del Bello', 'kdelbello', 'delb1234', 'gerente')" +
+                    ";"
+        )
+
+        db.execSQL(
+            "INSERT INTO actividades (actividad, cupo) VALUES" +
+                    "('pilates',6), " +
+                    "('aqua gym', 5)" +
+                    "('funcional', 6)" +
+                    ";"
+        )
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
