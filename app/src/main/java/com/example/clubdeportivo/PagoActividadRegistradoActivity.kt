@@ -32,6 +32,14 @@ class PagoActividadRegistradoActivity : AppCompatActivity() {
 
         val metodo = intent.getStringExtra("metodo")
 
+        val btnVolver = findViewById<TextView>(R.id.btnVolver)
+
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         val btnMostrarFactura = findViewById<Button>(R.id.btnMostrarFactura)
         btnMostrarFactura.setOnClickListener {
             val intent = Intent(this, FacturaDigitalActividadActivity::class.java)

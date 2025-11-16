@@ -36,6 +36,13 @@ class PagarActividadActivity : AppCompatActivity() {
 
         val btnPagar = findViewById<Button>(R.id.btnPagarActividad)
 
+        val btnVolver = findViewById<TextView>(R.id.btnVolver)
+
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         btnPagar.setOnClickListener {
             if(id != null){

@@ -30,6 +30,13 @@ class PagoCuotaRegistradoActivity : AppCompatActivity() {
         val tvFecha = findViewById<TextView>(R.id.tvFecha)
         tvFecha.text = now().toString()
 
+        val btnVolver = findViewById<TextView>(R.id.btnVolver)
+
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val btnMostrarFactura= findViewById<Button>(R.id.btnMostrarFactura)
         btnMostrarFactura.setOnClickListener {

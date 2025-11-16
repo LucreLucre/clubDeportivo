@@ -24,6 +24,14 @@ class RegistroExitosoSocioActivity : AppCompatActivity() {
         val apellido = intent.getStringExtra("apellido")
         tvnombreApellido.text = "$apellido, $nombre"
 
+        val btnVolver = findViewById<TextView>(R.id.btnVolver)
+
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         val btnPagarCuotaSocio = findViewById<Button>(R.id.btnPagarCuotaSocio)
         btnPagarCuotaSocio.setOnClickListener {
             if(nro_socio != null){

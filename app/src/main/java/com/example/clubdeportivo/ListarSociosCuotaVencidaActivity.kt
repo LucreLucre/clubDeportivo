@@ -3,6 +3,7 @@ package com.example.clubdeportivo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,14 @@ class ListarSociosCuotaVencidaActivity : AppCompatActivity() {
         }
 
         rvVencimientos.adapter = adapter
+
+        val btnVolver = findViewById<TextView>(R.id.btnVolver)
+
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val btnPagarCuota = findViewById<Button>(R.id.btnPagarCuota)
         btnPagarCuota.setOnClickListener {

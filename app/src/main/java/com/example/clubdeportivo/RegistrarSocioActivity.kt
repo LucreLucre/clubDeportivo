@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,14 @@ class RegistrarSocioActivity : AppCompatActivity() {
         setContentView(R.layout.activity_registrar_socio)
 
         val dbHelper = DBHelper(this)
+
+        val btnVolver = findViewById<TextView>(R.id.btnVolver)
+
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val etNombre   = findViewById<EditText>(R.id.etNombreSocio)
         val etApellido = findViewById<EditText>(R.id.etApellidoSocio)

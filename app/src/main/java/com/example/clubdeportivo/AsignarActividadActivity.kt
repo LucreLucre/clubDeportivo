@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -31,6 +32,14 @@ class AsignarActividadActivity : AppCompatActivity() {
 
         val etDni = findViewById<EditText>(R.id.etDNIActividad)
         val dni = etDni.text
+
+        val btnVolver = findViewById<TextView>(R.id.btnVolver)
+
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val btnAsignar = findViewById<Button>(R.id.btnAsignarActividad)
         btnAsignar.setOnClickListener{

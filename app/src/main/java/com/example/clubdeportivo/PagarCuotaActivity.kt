@@ -26,6 +26,14 @@ class PagarCuotaActivity : AppCompatActivity() {
         val apellido = intent.getStringExtra("apellido")
         tvnombreApellido.text = "$apellido, $nombre"
 
+        val btnVolver = findViewById<TextView>(R.id.btnVolver)
+
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         val btnPagar = findViewById<Button>(R.id.btnPagarCuota)
         btnPagar.setOnClickListener {
             if (nro_socio != null) {

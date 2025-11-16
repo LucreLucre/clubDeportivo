@@ -34,5 +34,13 @@ class FacturaDigitalActividadActivity : AppCompatActivity() {
 
         val tvFecha = findViewById<TextView>(R.id.tvFechaActividad)
         tvFecha.text = now().toString()
+
+        val btnVolver = findViewById<TextView>(R.id.btnVolver)
+
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

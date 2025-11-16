@@ -38,12 +38,17 @@ class MenuPrincipalActivity : AppCompatActivity() {
         }
 
         val btnSalir = findViewById<TextView>(R.id.tvSalir)
+
         btnSalir.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Cerrar sesión")
                 .setMessage("¿Desea cerrar la sesión?")
-                .setPositiveButton("Sí") {_,_ ->
-                    finish()
+                .setPositiveButton("Sí") { _, _ ->
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)   // limpia actividades previas
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)    // inicia Login como nueva raíz
+                    startActivity(intent)
+                    finish()   // cierra la Activity actual
                 }
                 .setNegativeButton("No", null)
                 .show()
