@@ -9,12 +9,14 @@
     android:background="@color/yellow">
 
     <TextView
+        android:id="@+id/btnVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="← Volver"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textColor="@android:color/white"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"/>
 
     <FrameLayout
         android:layout_width="match_parent"
